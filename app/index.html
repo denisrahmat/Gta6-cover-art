@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COMIC VICE — Cover Studio</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">COMIC<span>VICE</span></div>
+  <div class="tagline">Turn your photos into a comic-book GTA poster</div>
+  <div class="pow">POW!</div>
+</header>
+
+<main>
+  <section class="stage">
+    <canvas id="preview" width="980" height="551"></canvas>
+    <p class="hint">Drag a character to move it · drag a photo to pan it · scroll over a photo to zoom · click a panel to select it</p>
+    <div class="export-row">
+      <button id="exportWide" class="export-btn">⬇ PNG 1920×1080</button>
+      <button id="exportSquare" class="export-btn">⬇ PNG 1080×1080</button>
+      <button id="exportPortrait" class="export-btn">⬇ PNG 1080×1350</button>
+    </div>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <div class="row">
+        <label class="file-btn">Upload photos
+          <input type="file" id="fileInput" accept="image/*" multiple hidden>
+        </label>
+        <span class="muted">or drop them on the preview</span>
+      </div>
+      <p class="muted">Two model-made samples are loaded already. Your photos never leave this machine.</p>
+      <div class="row wrap">
+        <span id="panelLabel">Panel 1 of 1</span>
+        <select id="panelPhoto"></select>
+      </div>
+      <label class="slider">Zoom
+        <input type="range" id="panelZoom" min="1" max="4" step="0.05" value="1">
+      </label>
+      <button id="smartCrop" class="mini-btn">⌖ Smart crop (keep faces in frame)</button>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div id="layoutBox" class="pick-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Grade</h2>
+      <div id="gradeBox" class="pick-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>4 · Characters</h2>
+      <p class="muted">Tap a character to stick it on the cover, then drag it around. All five are original drawings.</p>
+      <div id="charBox" class="pick-grid"></div>
+      <div id="charList"></div>
+    </section>
+
+    <section class="card">
+      <h2>5 · Caption</h2>
+      <label>Title
+        <input type="text" id="titleInput" value="COMIC VICE" maxlength="24">
+      </label>
+      <label>Speech bubble
+        <input type="text" id="subInput" value="TWO OUTLAWS. ONE CITY." maxlength="42">
+      </label>
+      <label class="check">
+        <input type="checkbox" id="bubbleToggle" checked> Show speech bubble
+      </label>
+      <div class="row wrap">
+        <span>Preview size</span>
+        <div id="sizeBox" class="pick-grid small"></div>
+      </div>
+    </section>
+
+    <p class="foot">COMIC VICE — all art original. No Rockstar logos, artwork or fonts.</p>
+  </aside>
+</main>
+
+<script type="module" src="src/comic.js"></script>
+</body>
+</html>
