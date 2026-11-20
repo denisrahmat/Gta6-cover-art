@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE NIGHTS — GTA-style Cover Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315052e'/%3E%3Ccircle cx='16' cy='14' r='8' fill='%23ffd319'/%3E%3Crect x='6' y='22' width='20' height='3' fill='%23ff2e88'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-sun" aria-hidden="true"></span>
+    <div>
+      <h1>VICE NIGHTS</h1>
+      <p>Cover Studio — make a poster, not a collage</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btn-fill-all" class="btn ghost" type="button">Fill every panel</button>
+    <button id="btn-export" class="btn primary" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <aside class="panel controls" aria-label="Cover controls">
+    <section>
+      <h2>1 · Photos</h2>
+      <label class="upload" for="file-input">+ Add your photos
+        <input id="file-input" type="file" accept="image/*" multiple hidden>
+      </label>
+      <p class="hint">Or drop images onto the preview. Click a thumbnail, then a panel, to place it.</p>
+      <div id="thumbs" class="thumbs"></div>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div class="seg" id="layout-seg" role="group" aria-label="Panel layout">
+        <button type="button" data-layout="popout" class="active">Pop-Out</button>
+        <button type="button" data-layout="diagonal">Diagonal</button>
+        <button type="button" data-layout="slash">Slash</button>
+        <button type="button" data-layout="stack">Stack</button>
+        <button type="button" data-layout="triptych">Triptych</button>
+        <button type="button" data-layout="duotone">Duotone</button>
+        <button type="button" data-layout="arch">Arch</button>
+        <button type="button" data-layout="solo">Solo</button>
+      </div>
+      <p class="hint">Click a panel in the preview to select it. Drag to move the photo, scroll to zoom.</p>
+      <label class="row">Photo zoom
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <button id="btn-centre" class="btn ghost small" type="button">Centre photo in panel</button>
+      <button id="btn-smart-crop" class="btn ghost small" type="button">Smart crop panel</button>
+    </section>
+
+    <section>
+      <h2>3 · Caption</h2>
+      <label class="row">Title
+        <input id="caption" type="text" value="VICE NIGHTS" maxlength="24" spellcheck="false">
+      </label>
+      <label class="row">Sub-line
+        <input id="subcaption" type="text" value="EST. 2026" maxlength="32" spellcheck="false">
+      </label>
+      <label class="row">Starring
+        <input id="starring" type="text" value="THE CITY" maxlength="32" spellcheck="false">
+      </label>
+      <label class="row">Title size
+        <input id="caption-size" type="range" min="0.7" max="1.5" step="0.01" value="1">
+      </label>
+      <div class="seg" id="caption-pos" role="group" aria-label="Caption position">
+        <button type="button" data-pos="bottom" class="active">Bottom</button>
+        <button type="button" data-pos="top">Top</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>4 · Photo treatment</h2>
+      <div class="seg" id="treatment-seg" role="group" aria-label="Photo treatment">
+        <button type="button" data-treatment="photo" class="active">Photo</button>
+        <button type="button" data-treatment="ink">Ink</button>
+        <button type="button" data-treatment="flat">Flat</button>
+        <button type="button" data-treatment="rim">Rim light</button>
+      </div>
+      <p class="hint">Ink and Flat repaint the photo like a poster painting; Rim light adds a neon edge.</p>
+    </section>
+
+    <section>
+      <h2>5 · Grade</h2>
+      <div class="seg" id="theme-seg" role="group" aria-label="Colour grade">
+        <button type="button" data-theme="sunset" class="active">Sunset</button>
+        <button type="button" data-theme="vice">Vice</button>
+        <button type="button" data-theme="neon">Neon</button>
+        <button type="button" data-theme="miami">Miami</button>
+        <button type="button" data-theme="gold">Gold</button>
+        <button type="button" data-theme="dusk">Dusk</button>
+        <button type="button" data-theme="candy">Candy</button>
+        <button type="button" data-theme="noir">Noir</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>6 · Export size</h2>
+      <div class="seg" id="size-seg" role="group" aria-label="Export size">
+        <button type="button" data-size="1920x1080" class="active">1920 × 1080</button>
+        <button type="button" data-size="1080x1080">1080 × 1080</button>
+        <button type="button" data-size="1080x1350">1080 × 1350</button>
+      </div>
+      <p class="hint">Exports exactly what the preview shows — illustration, panels and lettering included.</p>
+    </section>
+  </aside>
+
+  <section class="panel stage" aria-label="Cover preview">
+    <div class="stage-head">
+      <span id="stage-label">Preview · 1920 × 1080</span>
+      <span id="stage-selected">Panel 1 selected</span>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="preview" width="960" height="540"></canvas>
+    </div>
+    <p class="hint center">Drag a photo inside its panel to reposition it · Scroll over a panel to zoom · Click a thumbnail, then a panel, to swap its photo.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>VICE NIGHTS is an original design. No Rockstar artwork, logos or fonts are used.</span>
+  <span>Photos stay on your machine — nothing is uploaded.</span>
+</footer>
+
+<script src="src/poster.js"></script>
+</body>
+</html>

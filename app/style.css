@@ -1,0 +1,221 @@
+/* VICE NIGHTS — editor chrome. Dark stage, neon pink + sunset amber accents. */
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #0d0218;
+  --panel: #17092b;
+  --panel-2: #1f0d38;
+  --line: #3a1a5e;
+  --ink: #f5eefc;
+  --muted: #b9a3cf;
+  --pink: #ff2e88;
+  --amber: #ffb347;
+  --cyan: #22e6ff;
+  --radius: 12px;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #1a0533, #3d0a4d 55%, #1a0533);
+  border-bottom: 2px solid var(--pink);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-sun {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(180deg, #ffd319 0%, #ff7a18 55%, #ff2e88 100%);
+  box-shadow: 0 0 18px rgba(255, 46, 136, .75);
+  flex: none;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: .14em;
+  font-weight: 900;
+  font-family: "Arial Black", "Segoe UI", sans-serif;
+}
+.brand p { margin: 1px 0 0; color: var(--muted); font-size: 12px; letter-spacing: .04em; }
+
+.top-actions { display: flex; gap: 10px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  font: 700 13px/1 "Segoe UI", system-ui, sans-serif;
+  letter-spacing: .05em;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.btn.primary {
+  background: linear-gradient(90deg, var(--pink), #ff7a18);
+  box-shadow: 0 4px 18px rgba(255, 46, 136, .45);
+}
+.btn.primary:hover { filter: brightness(1.12); }
+.btn.ghost { background: transparent; border: 1px solid var(--line); }
+.btn.ghost:hover { border-color: var(--pink); }
+.btn.small { padding: 8px 12px; font-size: 12px; }
+
+/* ---------- workspace ---------- */
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  padding: 16px 20px;
+  min-height: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- controls ---------- */
+.controls { padding: 6px 16px 16px; overflow-y: auto; }
+.controls section { border-bottom: 1px solid var(--line); padding: 14px 0; }
+.controls section:last-child { border-bottom: 0; }
+.controls h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.hint { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 8px 0 0; }
+.hint.center { text-align: center; }
+
+.upload {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border: 1px dashed var(--pink);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  background: rgba(255, 46, 136, .08);
+}
+.upload:hover { background: rgba(255, 46, 136, .16); }
+
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.thumbs img {
+  width: 64px; height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: block;
+}
+.thumbs img:hover { border-color: var(--amber); }
+.thumbs img.armed { border-color: var(--pink); box-shadow: 0 0 0 2px rgba(255, 46, 136, .5); }
+
+.seg { display: flex; gap: 6px; flex-wrap: wrap; }
+.seg button {
+  flex: 1;
+  min-width: 60px;
+  padding: 9px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--ink);
+  font: 700 12px/1 "Segoe UI", system-ui, sans-serif;
+  cursor: pointer;
+}
+.seg button:hover { border-color: var(--pink); }
+.seg button.active {
+  background: linear-gradient(90deg, var(--pink), #ff7a18);
+  border-color: transparent;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+.row input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  background: #0d0218;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: 700 13px "Segoe UI", system-ui, sans-serif;
+}
+.row input[type="text"]:focus { outline: 2px solid var(--pink); }
+.row input[type="range"] { flex: 1; accent-color: var(--pink); }
+
+/* ---------- stage ---------- */
+.stage { display: flex; flex-direction: column; padding: 14px 16px; min-width: 0; }
+.stage-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+#stage-selected { color: var(--amber); font-weight: 700; }
+.canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  background:
+    linear-gradient(45deg, #12042a 25%, transparent 25%, transparent 75%, #12042a 75%),
+    linear-gradient(45deg, #12042a 25%, #0d0218 25%, #0d0218 75%, #12042a 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  border-radius: 10px;
+  padding: 12px;
+}
+#preview {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .6);
+  cursor: crosshair;
+}
+
+/* ---------- footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: 1fr; }
+  .controls { overflow: visible; }
+}
