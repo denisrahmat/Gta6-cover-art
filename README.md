@@ -1,3 +1,9 @@
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/denisrahmat/Gta6-cover-art/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/denisrahmat/Gta6-cover-art/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+
+Entered on [make.fun](https://make.fun/bounty/gta6-cover-art-01) — the "Make GTA 6 Cover Art" bounty ($250 in USDC).
+
 # VICE NIGHTS — Cover Studio
 
 A GTA-style cover art maker. One canvas, one scene: a procedural Vice City
